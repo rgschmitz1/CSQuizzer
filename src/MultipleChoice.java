@@ -32,7 +32,7 @@ public class MultipleChoice {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return getSelectedButton();
+		return getSelectedButton().toString();
 	}
 
 	/**
@@ -81,10 +81,8 @@ public class MultipleChoice {
 			public void actionPerformed(ActionEvent arg0) {
 				if (buttonGroup.getSelection() == null) {
 					JOptionPane.showMessageDialog(null, "You must select an answer before continuing, try again!");
-				} else {
-					//JOptionPane.showMessageDialog(null, "You selected button " + getSelectedButton());
-					frmMultipleChoiceQuestion.dispose();
 				}
+				frmMultipleChoiceQuestion.dispose();
 			}
 		});
 		GridBagConstraints gbc_btnConfirm = new GridBagConstraints();

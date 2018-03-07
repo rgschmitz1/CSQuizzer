@@ -83,8 +83,8 @@ public class TestGui {
 		//		System.out.println(list.toString());
 				ReadYaml quiz = new ReadYaml("/cs143/Collections.yml");
 				//System.out.println(quiz.values.toString());
-				MultipleChoice question = new MultipleChoice(quiz);
-				System.out.println(question.MultipleChoiceWindow());
+				CheckBox question = new CheckBox(quiz);
+				System.out.println(question.CheckBoxWindow());
 		//System.out.println(quiz.values);
 		//		System.out.println(quiz.getAnswers().toString());
 		//System.out.println(quiz.values.get("CorrectAnswer"));

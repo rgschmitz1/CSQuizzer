@@ -77,10 +77,8 @@ public class CheckBox {
 			public void actionPerformed(ActionEvent arg0) {
 				if (getSelectedBoxes().size() == 0) {
 					JOptionPane.showMessageDialog(null, "You must select an answer before continuing, try again!");
-				} else {
-					JOptionPane.showMessageDialog(null, "You selected boxes " + getSelectedBoxes().toString());
-					frame.dispose();
 				}
+				frame.dispose();
 			}
 		});
 		GridBagConstraints gbc_btnConfirm = new GridBagConstraints();
