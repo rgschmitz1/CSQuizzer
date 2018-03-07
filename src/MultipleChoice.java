@@ -4,9 +4,12 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.GridBagConstraints;
+
+import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.ButtonGroup;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -35,14 +38,14 @@ public class MultipleChoice {
 	/**
 	 * Create the application.
 	 */
-	public MultipleChoice(readYaml quiz) {
+	public MultipleChoice(ReadYaml quiz) {
 		initialize(quiz);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(readYaml quiz) {
+	private void initialize(ReadYaml quiz) {
 		frmMultipleChoiceQuestion = new JDialog(null, "", Dialog.ModalityType.APPLICATION_MODAL);
 		frmMultipleChoiceQuestion.setTitle(quiz.getTitle());
 		frmMultipleChoiceQuestion.setLocationRelativeTo(null);
@@ -50,8 +53,7 @@ public class MultipleChoice {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		frmMultipleChoiceQuestion.getContentPane().setLayout(gridBagLayout);
 		
-		// This is the question input
-		// FIXME text doesn't wrap right
+		// This is the question output
 		JLabel label = new JLabel("<html>"+quiz.getQuestion().replaceAll("(\r\n|\n)", "<br />")+"</html>");
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.gridx = 0;
@@ -92,11 +94,7 @@ public class MultipleChoice {
 		
 		// Hint button
 		JButton btnHint = new JButton("Hint");
-		btnHint.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "This is a hint");
-			}
-		});
+		btnHint.addActionListener(new Hint(quiz));
 		GridBagConstraints gbc_btnHint = new GridBagConstraints();
 		gbc_btnHint.gridx = 1;
 		gbc_btnHint.gridy = i;
@@ -107,5 +105,24 @@ public class MultipleChoice {
 	private static String getSelectedButton() {
 		if (buttonGroup.getSelection() == null) return null;
 		return buttonGroup.getSelection().getActionCommand();
+	}
+	
+	// Display a hint
+	private class Hint implements ActionListener {
+		ReadYaml quiz;
+		public Hint(ReadYaml quiz) {
+			this.quiz = quiz;
+		}
+
+		public void actionPerformed(ActionEvent arg0) {
+			JLabel label = new JLabel("<html>" + quiz.getHintText() + "<html/>");
+			if (quiz.getHintImage() != null) {
+				label.setIcon(new ImageIcon(this.getClass().getResource(quiz.getHintImage())));
+			}
+			label.setHorizontalAlignment(JLabel.CENTER);
+			label.setVerticalTextPosition(JLabel.BOTTOM);
+			label.setHorizontalTextPosition(JLabel.CENTER);
+			JOptionPane.showMessageDialog(null, label, "Hint", JOptionPane.PLAIN_MESSAGE);
+		}
 	}
 }

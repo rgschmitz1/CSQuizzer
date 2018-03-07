@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 //import bsh.EvalError;
 import bsh.Interpreter;
 
-public class expression {
+public class Expression {
 	public static int difficulty = 9;
 	static Interpreter evaluater = new Interpreter();
 

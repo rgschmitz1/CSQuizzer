@@ -16,28 +16,32 @@ public class TestGui {
 		File file = files.get(index);
 		files.remove(index);
 		//System.out.println("/"+file.getName());
-		readYaml quiz = new readYaml("/"+difficulty+"/"+file.getName());
+		ReadYaml quiz = new ReadYaml("/"+difficulty+"/"+file.getName());
 		switch (quiz.getType()) {
+		// Multiple Choice Question
 		case 1 :
 			MultipleChoice question = new MultipleChoice(quiz);
 			if (quiz.checkAnswer(question.MultipleChoiceWindow())) {
 				score++;
 			}
 			break;
+		// Input Box Question
 		case 2 :
 			String userInput = JOptionPane.showInputDialog(null, quiz.getQuestion(), "Input your answer");
 			if (quiz.checkAnswer(userInput)) {
 				score++;
 			}
 			break;
+		// Check Box Question
 		case 3 :
 //			CheckBox question3 = new CheckBox(quiz);
 //			if (quiz.checkAnswer(question.CheckBoxWindow())) {
 //				score++;
 //			}
 			break;
+		// Random Expression Generator
 		default :
-			expression question4 = new expression();
+			Expression question4 = new Expression();
 			if (question4.expressionWindow()) {
 				score++;
 			}
@@ -63,23 +67,12 @@ public class TestGui {
 		for (File f: dir.listFiles()) tmp.add(f); 
 		return tmp;
 	}
-	
-	//	// Format text with image, will automatically wrap text at 80 characters
-	//	public static JLabel formatImageWithText(String text, String image) {
-	//		JLabel label = new JLabel("<html>" + WordUtils.wrap(text, 80).replaceAll("\n", "<br>") + "<html/>");
-	//		if (!StringUtils.isBlank(image)) label.setIcon(new ImageIcon(image.getClass().getResource(image)));
-	//		label.setHorizontalAlignment(JLabel.CENTER);
-	//		label.setVerticalTextPosition(JLabel.BOTTOM);
-	//		label.setHorizontalTextPosition(JLabel.CENTER);
-	//		return label;
-	//	}
 
 	public static void main(String[] args) {
 		// Select Difficulty
 //		ArrayList<File> files = selectDifficulty();
 //		// Randomly Select Files
 //		randomizer(files);
-		
 		//		System.out.println(num);
 		//		MultipleChoice question = new MultipleChoice();
 		//		num = question.MultipleChoiceWindow(null);
@@ -88,7 +81,7 @@ public class TestGui {
 		//		ArrayList<Integer> list = new ArrayList<Integer>();
 		//		list = question1.CheckBoxWindow(null);
 		//		System.out.println(list.toString());
-				readYaml quiz = new readYaml("/cs143/Collections.yml");
+				ReadYaml quiz = new ReadYaml("/cs143/Collections.yml");
 				//System.out.println(quiz.values.toString());
 				MultipleChoice question = new MultipleChoice(quiz);
 				System.out.println(question.MultipleChoiceWindow());

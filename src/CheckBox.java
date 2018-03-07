@@ -6,6 +6,8 @@ import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -14,87 +16,61 @@ public class CheckBox {
 
 	private JDialog frame;
 	private JLabel jlabel;
-	private static JCheckBox[] chkbxAnswers = new JCheckBox[5];
+	private static ArrayList<JCheckBox> chkbxAnswers = new ArrayList<>();
+	private static ArrayList<GridBagConstraints> gbc_chkbxAnswers = new ArrayList<>();
 	private JButton btnConfirm;
 	private JButton btnHint;
 
 	/**
 	 * Launch the application.
 	 */
-	public ArrayList<Integer> CheckBoxWindow(String[] args) {
+	public String CheckBoxWindow() {
 		try {
-			CheckBox window = new CheckBox();
-			window.frame.pack();
-			window.frame.setVisible(true);
+			frame.pack();
+			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return getSelectedBoxes();
+		return getSelectedBoxes().toString();
 	}
 
 	/**
 	 * Create the application.
 	 */
-	public CheckBox() {
-		initialize();
+	public CheckBox(ReadYaml quiz) {
+		initialize(quiz);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(ReadYaml quiz) {
 		frame = new JDialog(null, "", Dialog.ModalityType.APPLICATION_MODAL);
-		frame.setTitle("Selection Box Question");
+		frame.setTitle(quiz.getTitle());
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		frame.getContentPane().setLayout(gridBagLayout);
 
-		jlabel = new JLabel("This is a Question Placeholder");
+		jlabel = new JLabel("<html>"+quiz.getQuestion().replaceAll("(\r\n|\n)", "<br />")+"</html>");
 		GridBagConstraints gbc_jlabel = new GridBagConstraints();
 		gbc_jlabel.gridx = 0;
 		gbc_jlabel.gridy = 0;
 		frame.getContentPane().add(jlabel, gbc_jlabel);
 
-		chkbxAnswers[0] = new JCheckBox("answer1");
-		chkbxAnswers[0].setActionCommand("1");
-		GridBagConstraints gbc_chckbxAnswer = new GridBagConstraints();
-		gbc_chckbxAnswer.anchor = GridBagConstraints.WEST;
-		gbc_chckbxAnswer.gridx = 0;
-		gbc_chckbxAnswer.gridy = 1;
-		frame.getContentPane().add(chkbxAnswers[0], gbc_chckbxAnswer);
-
-		chkbxAnswers[1] = new JCheckBox("answer2");
-		chkbxAnswers[1].setActionCommand("2");
-		GridBagConstraints gbc_chckbxAnswer_1 = new GridBagConstraints();
-		gbc_chckbxAnswer_1.anchor = GridBagConstraints.WEST;
-		gbc_chckbxAnswer_1.gridx = 0;
-		gbc_chckbxAnswer_1.gridy = 2;
-		frame.getContentPane().add(chkbxAnswers[1], gbc_chckbxAnswer_1);
-
-		chkbxAnswers[2] = new JCheckBox("answer3");
-		chkbxAnswers[2].setActionCommand("3");
-		GridBagConstraints gbc_chckbxAnswer_2 = new GridBagConstraints();
-		gbc_chckbxAnswer_2.anchor = GridBagConstraints.WEST;
-		gbc_chckbxAnswer_2.gridx = 0;
-		gbc_chckbxAnswer_2.gridy = 3;
-		frame.getContentPane().add(chkbxAnswers[2], gbc_chckbxAnswer_2);
-
-		chkbxAnswers[3] = new JCheckBox("answer4");
-		chkbxAnswers[3].setActionCommand("4");
-		GridBagConstraints gbc_chckbxAnswer_3 = new GridBagConstraints();
-		gbc_chckbxAnswer_3.anchor = GridBagConstraints.WEST;
-		gbc_chckbxAnswer_3.gridx = 0;
-		gbc_chckbxAnswer_3.gridy = 4;
-		frame.getContentPane().add(chkbxAnswers[3], gbc_chckbxAnswer_3);
-
-		chkbxAnswers[4] = new JCheckBox("answer5");
-		chkbxAnswers[4].setActionCommand("5");
-		GridBagConstraints gbc_chckbxAnswer_4 = new GridBagConstraints();
-		gbc_chckbxAnswer_4.anchor = GridBagConstraints.WEST;
-		gbc_chckbxAnswer_4.gridx = 0;
-		gbc_chckbxAnswer_4.gridy = 5;
-		frame.getContentPane().add(chkbxAnswers[4], gbc_chckbxAnswer_4);
+		// These are the answers
+		int i=0;
+		for (String s : quiz.getAnswers()) {
+			chkbxAnswers.add(new JCheckBox(s));
+			chkbxAnswers.get(i).setActionCommand(String.valueOf(i));
+			gbc_chkbxAnswers.add(new GridBagConstraints());
+			gbc_chkbxAnswers.get(i).anchor = GridBagConstraints.WEST;
+			gbc_chkbxAnswers.get(i).gridx = 0;
+			gbc_chkbxAnswers.get(i).gridy = i+1;
+			frame.getContentPane().add(chkbxAnswers.get(i), gbc_chkbxAnswers.get(i));
+			i++;
+		}
+		i++;
 
 		btnConfirm = new JButton("Confirm");
 		btnConfirm.addActionListener(new ActionListener() {
@@ -109,29 +85,43 @@ public class CheckBox {
 		});
 		GridBagConstraints gbc_btnConfirm = new GridBagConstraints();
 		gbc_btnConfirm.gridx = 0;
-		gbc_btnConfirm.gridy = 6;
+		gbc_btnConfirm.gridy = i;
 		frame.getContentPane().add(btnConfirm, gbc_btnConfirm);
 
 		btnHint = new JButton("Hint");
-		btnHint.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "This is a hint");
-			}
-		});
+		btnHint.addActionListener(new Hint(quiz));
 		GridBagConstraints gbc_btnHint = new GridBagConstraints();
 		gbc_btnHint.gridx = 1;
-		gbc_btnHint.gridy = 6;
+		gbc_btnHint.gridy = i;
 		frame.getContentPane().add(btnHint, gbc_btnHint);
 	}
 
 	// Get selected button
 	private static ArrayList<Integer> getSelectedBoxes() {
 		ArrayList<Integer> selectedBoxes = new ArrayList<Integer>();
-		for (int i = 0; i < chkbxAnswers.length; i++) {
-			if (chkbxAnswers[i].isSelected()) {
-				selectedBoxes.add(Integer.parseInt(chkbxAnswers[i].getActionCommand()));
+		for (int i = 0; i < chkbxAnswers.size(); i++) {
+			if (chkbxAnswers.get(i).isSelected()) {
+				selectedBoxes.add(Integer.parseInt(chkbxAnswers.get(i).getActionCommand()));
 			}
 		}
 		return selectedBoxes;
+	}
+	// Display a hint
+	private class Hint implements ActionListener {
+		ReadYaml quiz;
+		public Hint(ReadYaml quiz) {
+			this.quiz = quiz;
+		}
+
+		public void actionPerformed(ActionEvent arg0) {
+			JLabel label = new JLabel("<html>" + quiz.getHintText() + "<html/>");
+			if (quiz.getHintImage() != null) {
+				label.setIcon(new ImageIcon(this.getClass().getResource(quiz.getHintImage())));
+			}
+			label.setHorizontalAlignment(JLabel.CENTER);
+			label.setVerticalTextPosition(JLabel.BOTTOM);
+			label.setHorizontalTextPosition(JLabel.CENTER);
+			JOptionPane.showMessageDialog(null, label, "Hint", JOptionPane.PLAIN_MESSAGE);
+		}
 	}
 }
