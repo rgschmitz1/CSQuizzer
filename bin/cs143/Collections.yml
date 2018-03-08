@@ -1,6 +1,8 @@
 ---
-Type: 1
+Type: '1'
+## This will be part of the window title
 Title: Collections
+## This is the question, include a | character to keep formatting
 Question: | 
       If Apple was added twice to Set A but added just once to Set B, Set A and Set B would be considered to be different.
 
@@ -15,9 +17,13 @@ Question: |
       System.out.println(b.equals(a));
 
       // do they represent the same set?
-Answer0: 'True'
-Answer1: 'False'
+## These are answers to select, will be stored in ArrayList
+Answer0: 'true'
+Answer1: 'false'
+## This is the correct answer, use quotes to return as string
 CorrectAnswer: '1'
-HintText: 'this is a hint'
-HintImage: '/Chocolate Image.jpg'
+## This is hint text
+HintText: null
+## This is a hint image, should store images in /resources folder
+HintImage: null
 ...

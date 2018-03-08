@@ -6,8 +6,8 @@ import javax.swing.JOptionPane;
 
 public class TestGui {
 	private static String difficulty;
-	private static int score;
-	
+	public static int SCORE;
+
 	// Recursively outputs a filename
 	private static void randomizer(ArrayList<File> files) {
 		if (files.size() == 0) return;
@@ -17,36 +17,36 @@ public class TestGui {
 		files.remove(index);
 		//System.out.println("/"+file.getName());
 		ReadYaml quiz = new ReadYaml("/"+difficulty+"/"+file.getName());
-		switch (quiz.getType()) {
+		switch (Integer.parseInt(quiz.getType())) {
 		// Multiple Choice Question
 		case 1 :
 			MultipleChoice question = new MultipleChoice(quiz);
 			if (quiz.checkAnswer(question.MultipleChoiceWindow())) {
-				score++;
+				SCORE+=10;
 			}
 			break;
-		// Input Box Question
+			// Input Box Question
 		case 2 :
 			String userInput = JOptionPane.showInputDialog(null, quiz.getQuestion(), "Input your answer");
 			if (quiz.checkAnswer(userInput)) {
-				score++;
+				SCORE+=10;
 			}
 			break;
-		// Check Box Question
+			// Check Box Question
 		case 3 :
-//			CheckBox question3 = new CheckBox(quiz);
-//			if (quiz.checkAnswer(question.CheckBoxWindow())) {
-//				score++;
-//			}
+			//			CheckBox question3 = new CheckBox(quiz);
+			//			if (quiz.checkAnswer(question.CheckBoxWindow())) {
+			//				score++;
+			//			}
 			break;
-		// Random Expression Generator
+			// Random Expression Generator
 		default :
 			Expression question4 = new Expression();
 			if (question4.expressionWindow()) {
-				score++;
+				SCORE+=10;
 			}
 		}
-//		System.out.println(quiz.getQuestion());
+		//		System.out.println(quiz.getQuestion());
 		randomizer(files);
 	}
 	// Select a difficulty level
@@ -69,26 +69,18 @@ public class TestGui {
 	}
 
 	public static void main(String[] args) {
-		// Select Difficulty
-//		ArrayList<File> files = selectDifficulty();
-//		// Randomly Select Files
-//		randomizer(files);
-		//		System.out.println(num);
-		//		MultipleChoice question = new MultipleChoice();
-		//		num = question.MultipleChoiceWindow(null);
-		//		System.out.println(num);
-		//		CheckBox question1 = new CheckBox();
-		//		ArrayList<Integer> list = new ArrayList<Integer>();
-		//		list = question1.CheckBoxWindow(null);
-		//		System.out.println(list.toString());
-				ReadYaml quiz = new ReadYaml("/cs143/Collections.yml");
-				//System.out.println(quiz.values.toString());
-				CheckBox question = new CheckBox(quiz);
-				System.out.println(question.CheckBoxWindow());
-		//System.out.println(quiz.values);
-		//		System.out.println(quiz.getAnswers().toString());
-		//System.out.println(quiz.values.get("CorrectAnswer"));
-		//		System.out.println(quiz.checkAnswer("[you, are, how]"));
+		// Insert your test quiz below
+		ReadYaml quiz = new ReadYaml("/cs143/Collections.yml");
+//		System.out.println(quiz.values.toString());
+		System.out.println(quiz.getType());
+		if (quiz.getType().equals("1")) {
+			MultipleChoice question = new MultipleChoice(quiz);
+			System.out.println(question.MultipleChoiceWindow());
+		} else {
+			CheckBox question = new CheckBox(quiz);
+			System.out.println(question.CheckBoxWindow());
+		}
+
 	}
 
 }

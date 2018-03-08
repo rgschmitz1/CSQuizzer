@@ -46,7 +46,7 @@ public class CheckBox {
 	 */
 	private void initialize(ReadYaml quiz) {
 		frame = new JDialog(null, "", Dialog.ModalityType.APPLICATION_MODAL);
-		frame.setTitle(quiz.getTitle());
+		frame.setTitle("Score: " + TestGui.SCORE + " - " + quiz.getTitle());
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
