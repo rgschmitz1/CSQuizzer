@@ -1,15 +1,19 @@
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
-
 import javax.swing.JOptionPane;
 
 public class TestGui {
-	private static String difficulty;
+	private String difficulty;
 	public static int SCORE;
 
-	// Recursively outputs a filename
-	private static void randomizer(ArrayList<File> files) {
+	// Randomizer helper
+	private void randomizer() {
+		ArrayList<File> files = selectDifficulty();
+		randomizer(files);
+	}
+	// Recursively selects a random quiz to run
+	private void randomizer(ArrayList<File> files) {
 		if (files.size() == 0) return;
 		Random rand = new Random();
 		int index = rand.nextInt(files.size());
@@ -17,7 +21,7 @@ public class TestGui {
 		files.remove(index);
 		//System.out.println("/"+file.getName());
 		ReadYaml quiz = new ReadYaml("/"+difficulty+"/"+file.getName());
-		switch (Integer.parseInt(quiz.getType())) {
+		switch (quiz.getType()) {
 		// Multiple Choice Question
 		case 1 :
 			MultipleChoice question = new MultipleChoice(quiz);
@@ -34,10 +38,10 @@ public class TestGui {
 			break;
 			// Check Box Question
 		case 3 :
-			//			CheckBox question3 = new CheckBox(quiz);
-			//			if (quiz.checkAnswer(question.CheckBoxWindow())) {
-			//				score++;
-			//			}
+			CheckBox question3 = new CheckBox(quiz);
+			if (quiz.checkAnswer(question3.CheckBoxWindow())) {
+				SCORE+=10;
+			}
 			break;
 			// Random Expression Generator
 		default :
@@ -46,41 +50,42 @@ public class TestGui {
 				SCORE+=10;
 			}
 		}
-		//		System.out.println(quiz.getQuestion());
 		randomizer(files);
 	}
 	// Select a difficulty level
-	private static ArrayList<File> selectDifficulty() {
+	private ArrayList<File> selectDifficulty() {
 		DifficultySelection lvl = new DifficultySelection();
 		File dir=null;
 		switch (lvl.DifficultySelectionWindow()) {
 		case 1:
-			dir = new File("resources/cs142");
 			difficulty="cs142";
 			break;
-		case 2:
-			dir = new File("resources/cs143");
+		case 2:		
 			difficulty="cs143";
 			break;
 		}
 		ArrayList<File> tmp= new ArrayList<>();
+		dir = new File("resources/"+difficulty);
 		for (File f: dir.listFiles()) tmp.add(f); 
 		return tmp;
 	}
 
-	public static void main(String[] args) {
+	public void main(String[] args) {
+		// Kick off quizzes
+		//		randomizer();
+		Expression question4 = new Expression();
+		//		question4.main(null);
+		System.out.println(question4.expressionWindow());
+
 		// Insert your test quiz below
 		ReadYaml quiz = new ReadYaml("/cs143/Collections.yml");
-//		System.out.println(quiz.values.toString());
-		System.out.println(quiz.getType());
-		if (quiz.getType().equals("1")) {
+		if (quiz.getType() == 1) {
 			MultipleChoice question = new MultipleChoice(quiz);
 			System.out.println(question.MultipleChoiceWindow());
 		} else {
 			CheckBox question = new CheckBox(quiz);
 			System.out.println(question.CheckBoxWindow());
 		}
-
 	}
 
 }

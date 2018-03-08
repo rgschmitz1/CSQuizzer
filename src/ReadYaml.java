@@ -33,8 +33,8 @@ public class ReadYaml {
 		return s.equals(values.get("CorrectAnswer"));
 	}
 	// Get Quiz type, 1 is multiple choice, 2 is check box, 3 is input box
-	public String getType() {
-		return values.get("Type");
+	public int getType() {
+		return Integer.parseInt(values.get("Type"));
 	}
 	// Get Quiz title
 	public String getTitle() {

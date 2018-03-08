@@ -16,8 +16,8 @@ public class CheckBox {
 
 	private JDialog frame;
 	private JLabel jlabel;
-	private static ArrayList<JCheckBox> chkbxAnswers = new ArrayList<>();
-	private static ArrayList<GridBagConstraints> gbc_chkbxAnswers = new ArrayList<>();
+	private ArrayList<JCheckBox> chkbxAnswers = new ArrayList<>();
+	private ArrayList<GridBagConstraints> gbc_chkbxAnswers = new ArrayList<>();
 	private JButton btnConfirm;
 	private JButton btnHint;
 
@@ -46,7 +46,8 @@ public class CheckBox {
 	 */
 	private void initialize(ReadYaml quiz) {
 		frame = new JDialog(null, "", Dialog.ModalityType.APPLICATION_MODAL);
-		frame.setTitle("Score: " + TestGui.SCORE + " - " + quiz.getTitle());
+		String title = "Score: " + TestGui.SCORE + " - " + quiz.getTitle();
+		frame.setTitle(title);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -95,7 +96,7 @@ public class CheckBox {
 	}
 
 	// Get selected button
-	private static ArrayList<Integer> getSelectedBoxes() {
+	private ArrayList<Integer> getSelectedBoxes() {
 		ArrayList<Integer> selectedBoxes = new ArrayList<Integer>();
 		for (int i = 0; i < chkbxAnswers.size(); i++) {
 			if (chkbxAnswers.get(i).isSelected()) {
@@ -112,7 +113,7 @@ public class CheckBox {
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			JLabel label = new JLabel("<html>" + quiz.getHintText() + "<html/>");
+			JLabel label = new JLabel("<html>" + quiz.getHintText().replaceAll("(\r\n|\n)", "<br />") + "<html/>");
 			if (quiz.getHintImage() != null) {
 				label.setIcon(new ImageIcon(this.getClass().getResource(quiz.getHintImage())));
 			}

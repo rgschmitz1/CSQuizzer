@@ -17,9 +17,9 @@ import java.util.ArrayList;
 public class MultipleChoice {
 
 	private JDialog frmMultipleChoiceQuestion;
-	private static ButtonGroup buttonGroup = new ButtonGroup();
-	private static ArrayList<JRadioButton> rdbtnAnswers = new ArrayList<>();
-	private static ArrayList<GridBagConstraints> gbc_rdbtnAnswers = new ArrayList<>();
+	private ButtonGroup buttonGroup = new ButtonGroup();
+	private ArrayList<JRadioButton> rdbtnAnswers = new ArrayList<>();
+	private ArrayList<GridBagConstraints> gbc_rdbtnAnswers = new ArrayList<>();
 
 	/**
 	 * Launch the application.
@@ -47,7 +47,8 @@ public class MultipleChoice {
 	 */
 	private void initialize(ReadYaml quiz) {
 		frmMultipleChoiceQuestion = new JDialog(null, "", Dialog.ModalityType.APPLICATION_MODAL);
-		frmMultipleChoiceQuestion.setTitle(quiz.getTitle());
+		String title = "Score: " + TestGui.SCORE + " - " + quiz.getTitle();
+		frmMultipleChoiceQuestion.setTitle(title);
 		frmMultipleChoiceQuestion.setLocationRelativeTo(null);
 		frmMultipleChoiceQuestion.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -100,7 +101,7 @@ public class MultipleChoice {
 	}
 
 	// Get selected button
-	private static String getSelectedButton() {
+	private String getSelectedButton() {
 		if (buttonGroup.getSelection() == null) return null;
 		return buttonGroup.getSelection().getActionCommand();
 	}
@@ -113,7 +114,7 @@ public class MultipleChoice {
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			JLabel label = new JLabel("<html>" + quiz.getHintText() + "<html/>");
+			JLabel label = new JLabel("<html>" + quiz.getHintText().replaceAll("(\r\n|\n)", "<br />") + "<html/>");
 			if (quiz.getHintImage() != null) {
 				label.setIcon(new ImageIcon(this.getClass().getResource(quiz.getHintImage())));
 			}
