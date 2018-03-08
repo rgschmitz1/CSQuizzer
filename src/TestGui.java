@@ -45,8 +45,8 @@ public class TestGui {
 			break;
 			// Random Expression Generator
 		default :
-			Expression question4 = new Expression();
-			if (question4.expressionWindow()) {
+			expression question4 = new expression();
+			if (question4.eval(9)) {
 				SCORE+=10;
 			}
 		}
@@ -70,12 +70,11 @@ public class TestGui {
 		return tmp;
 	}
 
-	public void main(String[] args) {
+	public static void main(String[] args) {
 		// Kick off quizzes
 		//		randomizer();
-		Expression question4 = new Expression();
-		//		question4.main(null);
-		System.out.println(question4.expressionWindow());
+//		expression question4 = new expression();
+//		question4.eval(9);
 
 		// Insert your test quiz below
 		ReadYaml quiz = new ReadYaml("/cs143/Collections.yml");
