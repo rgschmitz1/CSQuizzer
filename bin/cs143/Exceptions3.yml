@@ -1,0 +1,17 @@
+Type: 1 ##Multiple choice
+CorrectAnswer: "NullPointerException"
+incorrectAnswers:
+  incorrect1: "ArrayIndexOutOfBoundsException"
+  incorrect2: "UninitializedVariableError" ## wtf??
+  incorrect3: "The program does not compile"
+  incorrect4: "You must construct additional pylons" ##StarCraft Reference
+Question: |
+ If the following Java class is saved properly, compiled, and executed:
+
+  public class MyClass {
+   static int[] a;
+   public static void main(String[] args) {
+     System.out.println(a[1]);
+   }
+ }
+ what kind of throwable will be generated?

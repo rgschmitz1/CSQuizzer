@@ -1,0 +1,31 @@
+Type 1: ### Multiple Choice
+Title: Big O Notation
+ ## A list of uncorrect answers that are strings
+incorrectAnswers:
+ -incorrect1: "O(1)"
+ -incorrect2: "O(N)"
+ -incorrect3: "O(N^3)"
+ 
+ ## Correct Answer 
+CorrectAnswer: "O(n^2)"
+HintImage: '/BigO.gif'
+HintText: 'this is a hint'
+Question: |
+ Consider the following code,
+
+ public static int findBiggestProduct(int[] a) {
+  int x = 0;
+  for (int i = 0; i < a.length; i++) {
+    for (int j = i+1; j < a.length; j++) {
+      if (a[i]*a[j] > x) x = a[i]*a[j];
+    }
+  }
+  return x;
+ }
+ Which of the following is the best characterization
+ of its running behavior (e.g. T(n) = the number of
+ CPU cycles executed by running findBiggestProduct given
+ an array of n random ints) using O-notation?
+
+
+

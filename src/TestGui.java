@@ -69,26 +69,10 @@ public class TestGui {
 	}
 
 	public static void main(String[] args) {
-		// Select Difficulty
-//		ArrayList<File> files = selectDifficulty();
-//		// Randomly Select Files
-//		randomizer(files);
-		//		System.out.println(num);
-		//		MultipleChoice question = new MultipleChoice();
-		//		num = question.MultipleChoiceWindow(null);
-		//		System.out.println(num);
-		//		CheckBox question1 = new CheckBox();
-		//		ArrayList<Integer> list = new ArrayList<Integer>();
-		//		list = question1.CheckBoxWindow(null);
-		//		System.out.println(list.toString());
-				ReadYaml quiz = new ReadYaml("/cs143/Collections.yml");
+				ReadYaml quiz = new ReadYaml("/cs143/BigONotation.yml");
 				//System.out.println(quiz.values.toString());
 				CheckBox question = new CheckBox(quiz);
 				System.out.println(question.CheckBoxWindow());
-		//System.out.println(quiz.values);
-		//		System.out.println(quiz.getAnswers().toString());
-		//System.out.println(quiz.values.get("CorrectAnswer"));
-		//		System.out.println(quiz.checkAnswer("[you, are, how]"));
 	}
 
 }

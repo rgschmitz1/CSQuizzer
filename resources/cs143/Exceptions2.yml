@@ -1,0 +1,14 @@
+Type: 1 #Multiple Choice
+CorrectAnswer: "StackOverflowError"
+incorrectAnswers:
+  incorrect1: "StackOverflowException"
+  incorrect2: "None, it just runs forever"
+  incorrect3: "RunForeverError"
+
+question: |
+ If a Java main method calls itself forever in the following way
+
+ public static void main(String[] args) {
+  main(args);
+ }
+ what kind of error will be generated?

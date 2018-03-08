@@ -1,0 +1,24 @@
+### Verified
+Type: '1' ## Multiple Choice
+Title: ExceptionExample 
+
+Question: |
+
+   If the following code appears in a class, it won't compile.
+   Why?
+
+    public static void main(String[] args) {
+    throw new Exception("Hi!");
+   }
+ 
+
+CorrectAnswer: '2'
+
+Answer0: 'Java does not allow throwing exceptions'
+
+Answer1: 'The Exception constructor does not take an argument'
+  
+Answer2: 'The exception class is "checked" so you must write "throws Exception" after (String []args)'
+   
+Answer3: 'If a Java program is guaranteed to throw an exception, Java will not allow it to compile.'
+  

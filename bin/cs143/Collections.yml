@@ -15,8 +15,8 @@ Question: |
       System.out.println(b.equals(a));
 
       // do they represent the same set?
-Answer0: 'True'
-Answer1: 'False'
+Answer0: 'true'
+Answer1: 'false'
 CorrectAnswer: '1'
 HintText: 'this is a hint'
 HintImage: '/Chocolate Image.jpg'
