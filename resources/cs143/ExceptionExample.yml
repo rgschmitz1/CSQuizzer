@@ -1,0 +1,9 @@
+Type: 1 ## Multiple Choice
+CorrectAnswer: |
+ The Exception class is 'checked' so you must write throws Exception
+ after(String[]args)
+
+incorrectAnswers:
+  incorrect1: "Java doesn't allow throwing Exceptions"
+  incorrect2: "The Exception constructior doesn't take an argument"
+  incorrect3: "If a java program is guaranteed to throw an exception, Java won't compile."

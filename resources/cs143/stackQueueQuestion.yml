@@ -2,8 +2,9 @@
 
 ###################DISPLAY IN SHOWDIALOGUE WINDOW#####################
 
-    Type: 'UserInput'
-    Question: |
+    Type: 2
+    CorrectAnswer: '[you, are, how]'
+    Question: 
         What is the output of the following lines of code?
             Stack<String> s = new Stack<String>(); 
             Queue<String> q = new LinkedList<String>(); 
@@ -13,8 +14,9 @@
             while(!s.isEmpty()){
                 q.add(s.pop()):}
             System.out.println(q);
-        Recall that stacks and queues print in an [a,b,c] format.
-    CorrectAnswer: '[you, are, how]'
+        Recall that stacks and queues print in an [a,b,c] format. 
+
+
 
 ######## GET INPUT FROM USER#############
 ...

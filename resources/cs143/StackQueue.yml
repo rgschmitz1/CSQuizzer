@@ -1,0 +1,10 @@
+---
+#This is a question object, and each indented String is a type of quesiton.
+
+Question:
+  incorrect1: 'A stack returns elements in the same order as they were added (first-in, first-out).'
+  incorrect2: 'Stacks and queues are similar to lists, but less efficient.'
+  incorrect3: 'The peek method allows access to the element at the bottom of a stack.'
+  correctAnswer: 'A queue's remove method removes and returns the element at the front of the queue.'
+
+  ...
