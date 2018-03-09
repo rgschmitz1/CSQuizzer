@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 public class TestGui {
 	private String difficulty;
 	public static int SCORE;
+	public static int OVERALLSCORE;
 
 	// Randomizer helper
 	private void randomizer() {
@@ -22,32 +23,29 @@ public class TestGui {
 		//System.out.println("/"+file.getName());
 		ReadYaml quiz = new ReadYaml("/"+difficulty+"/"+file.getName());
 		switch (quiz.getType()) {
-		// Multiple Choice Question
-		case 1 :
+		case 1 :  // Multiple Choice Question
 			MultipleChoice question = new MultipleChoice(quiz);
 			if (quiz.checkAnswer(question.MultipleChoiceWindow())) {
-				SCORE+=10;
+				SCORE++;
+			}
+			
+			break;
+		case 2 :  // Input Box Question
+			InputBox question2 = new InputBox(quiz);
+			if (quiz.checkAnswer(question2.InputBoxWindow())) {
+				SCORE++;
 			}
 			break;
-			// Input Box Question
-		case 2 :
-			String userInput = JOptionPane.showInputDialog(null, quiz.getQuestion(), "Input your answer");
-			if (quiz.checkAnswer(userInput)) {
-				SCORE+=10;
-			}
-			break;
-			// Check Box Question
-		case 3 :
+		case 3 :  // Check Box Question
 			CheckBox question3 = new CheckBox(quiz);
 			if (quiz.checkAnswer(question3.CheckBoxWindow())) {
-				SCORE+=10;
+				SCORE++;
 			}
 			break;
-			// Random Expression Generator
-		default :
+		default :  // Random Expression Generator
 			expression question4 = new expression();
-			if (question4.eval(9)) {
-				SCORE+=10;
+			if ((difficulty.equals("cs143") ? question4.eval(9) : question4.eval(7))) {
+				SCORE++;
 			}
 		}
 		randomizer(files);
@@ -74,16 +72,19 @@ public class TestGui {
 		// Kick off quizzes
 		//		randomizer();
 //		expression question4 = new expression();
-//		question4.eval(9);
+//		System.out.println(question4.eval(7));
 
 		// Insert your test quiz below
 		ReadYaml quiz = new ReadYaml("/cs143/Collections.yml");
 		if (quiz.getType() == 1) {
 			MultipleChoice question = new MultipleChoice(quiz);
-			System.out.println(question.MultipleChoiceWindow());
+			System.out.println(quiz.checkAnswer(question.MultipleChoiceWindow()));
+		} else if (quiz.getType() == 2) {
+			InputBox question = new InputBox(quiz);
+			System.out.println(quiz.checkAnswer(question.InputBoxWindow()));
 		} else {
 			CheckBox question = new CheckBox(quiz);
-			System.out.println(question.CheckBoxWindow());
+			System.out.println(quiz.checkAnswer(question.CheckBoxWindow()));
 		}
 	}
 

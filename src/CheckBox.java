@@ -53,7 +53,9 @@ public class CheckBox {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		frame.getContentPane().setLayout(gridBagLayout);
 
-		jlabel = new JLabel("<html>"+quiz.getQuestion().replaceAll("(\r\n|\n)", "<br />")+"</html>");
+		// This is the question
+		String question = "<html>"+quiz.getQuestion().replaceAll("(\r\n|\n)", "<br />")+"</html>";
+		jlabel = new JLabel(question);
 		GridBagConstraints gbc_jlabel = new GridBagConstraints();
 		gbc_jlabel.gridx = 0;
 		gbc_jlabel.gridy = 0;
@@ -73,6 +75,7 @@ public class CheckBox {
 		}
 		i++;
 
+		// Confirm button
 		btnConfirm = new JButton("Confirm");
 		btnConfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -87,12 +90,15 @@ public class CheckBox {
 		gbc_btnConfirm.gridy = i;
 		frame.getContentPane().add(btnConfirm, gbc_btnConfirm);
 
-		btnHint = new JButton("Hint");
-		btnHint.addActionListener(new Hint(quiz));
-		GridBagConstraints gbc_btnHint = new GridBagConstraints();
-		gbc_btnHint.gridx = 1;
-		gbc_btnHint.gridy = i;
-		frame.getContentPane().add(btnHint, gbc_btnHint);
+		// Hint button, will only be displayed if there is a hint
+		if (quiz.getHintText() != null || quiz.getHintImage() != null) {
+			btnHint = new JButton("Hint");
+			btnHint.addActionListener(new Hint(quiz));
+			GridBagConstraints gbc_btnHint = new GridBagConstraints();
+			gbc_btnHint.gridx = 1;
+			gbc_btnHint.gridy = i;
+			frame.getContentPane().add(btnHint, gbc_btnHint);
+		}
 	}
 
 	// Get selected button
@@ -113,7 +119,8 @@ public class CheckBox {
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			JLabel label = new JLabel("<html>" + quiz.getHintText().replaceAll("(\r\n|\n)", "<br />") + "<html/>");
+			String hint = (quiz.getHintText() == null ? null : "<html>" + quiz.getHintText().replaceAll("(\r\n|\n)", "<br />") + "<html/>");
+			JLabel label = new JLabel(hint);
 			if (quiz.getHintImage() != null) {
 				label.setIcon(new ImageIcon(this.getClass().getResource(quiz.getHintImage())));
 			}

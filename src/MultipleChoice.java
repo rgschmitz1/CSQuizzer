@@ -54,8 +54,9 @@ public class MultipleChoice {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		frmMultipleChoiceQuestion.getContentPane().setLayout(gridBagLayout);
 		
-		// This is the question output
-		JLabel label = new JLabel("<html>"+quiz.getQuestion().replaceAll("(\r\n|\n)", "<br />")+"</html>");
+		// This is the question
+		String question = "<html>"+quiz.getQuestion().replaceAll("(\r\n|\n)", "<br />")+"</html>";
+		JLabel label = new JLabel(question);
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.gridx = 0;
 		gbc_label.gridy = 0;
@@ -91,13 +92,15 @@ public class MultipleChoice {
 		gbc_btnConfirm.gridy = i;
 		frmMultipleChoiceQuestion.getContentPane().add(btnConfirm, gbc_btnConfirm);
 		
-		// Hint button
-		JButton btnHint = new JButton("Hint");
-		btnHint.addActionListener(new Hint(quiz));
-		GridBagConstraints gbc_btnHint = new GridBagConstraints();
-		gbc_btnHint.gridx = 1;
-		gbc_btnHint.gridy = i;
-		frmMultipleChoiceQuestion.getContentPane().add(btnHint, gbc_btnHint);
+		// Hint button, will only be displayed if there is a hint
+		if (quiz.getHintText() != null || quiz.getHintImage() != null) {
+			JButton btnHint = new JButton("Hint");
+			btnHint.addActionListener(new Hint(quiz));
+			GridBagConstraints gbc_btnHint = new GridBagConstraints();
+			gbc_btnHint.gridx = 1;
+			gbc_btnHint.gridy = i;
+			frmMultipleChoiceQuestion.getContentPane().add(btnHint, gbc_btnHint);
+		}
 	}
 
 	// Get selected button
@@ -114,7 +117,8 @@ public class MultipleChoice {
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			JLabel label = new JLabel("<html>" + quiz.getHintText().replaceAll("(\r\n|\n)", "<br />") + "<html/>");
+			String hint = (quiz.getHintText() == null ? null : "<html>" + quiz.getHintText().replaceAll("(\r\n|\n)", "<br />") + "<html/>");
+			JLabel label = new JLabel(hint);
 			if (quiz.getHintImage() != null) {
 				label.setIcon(new ImageIcon(this.getClass().getResource(quiz.getHintImage())));
 			}
