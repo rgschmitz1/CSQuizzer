@@ -46,7 +46,7 @@ public class CheckBox {
 	 */
 	private void initialize(ReadYaml quiz) {
 		frame = new JDialog(null, "", Dialog.ModalityType.APPLICATION_MODAL);
-		String title = "Score: " + TestGui.SCORE + " - " + quiz.getTitle();
+		String title = "Score: " + TestGui.SCORE + "/" + TestGui.ATTEMPTS + " - " + quiz.getTitle();
 		frame.setTitle(title);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -77,14 +77,7 @@ public class CheckBox {
 
 		// Confirm button
 		btnConfirm = new JButton("Confirm");
-		btnConfirm.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if (getSelectedBoxes().size() == 0) {
-					JOptionPane.showMessageDialog(null, "You must select an answer before continuing, try again!");
-				}
-				frame.dispose();
-			}
-		});
+		btnConfirm.addActionListener(new Confirm());
 		GridBagConstraints gbc_btnConfirm = new GridBagConstraints();
 		gbc_btnConfirm.gridx = 0;
 		gbc_btnConfirm.gridy = i;
@@ -110,6 +103,16 @@ public class CheckBox {
 			}
 		}
 		return selectedBoxes;
+	}
+	// Confirm action listener
+	private class Confirm implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			if (getSelectedBoxes().size() == 0) {
+				JOptionPane.showMessageDialog(null, "You must select an answer before continuing, try again!");
+			} else {
+				frame.dispose();
+			}
+		}
 	}
 	// Display a hint
 	private class Hint implements ActionListener {

@@ -1,4 +1,4 @@
-Type: 1 ## Multiple choice
+Type: '1'
 CorrectAnswer: "Unlike integers, arrays are objects and use reference semantics."
 
 ## List of incorrectAnswers

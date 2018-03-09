@@ -1,0 +1,13 @@
+`Type: 1 ## Multiple Choice
+CorrectAnswer: "None, it just runs forever."
+## Here are the incorrect answers
+incorrectAnswers:
+  incorrect1: "RunForeverError."
+  incorrect2: "RunForeverException."
+  incorrect3: "RunForeverThrowable."
+
+Question: |
+ If a Java main methods runs forever in the following way:
+   while (true) {
+
+ }`

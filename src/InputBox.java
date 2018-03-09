@@ -48,7 +48,7 @@ public class InputBox {
 	 */
 	private void initialize(ReadYaml quiz) {
 		frame = new JDialog(null, "", Dialog.ModalityType.APPLICATION_MODAL);
-		String title = "Score: " + TestGui.SCORE + " - " + quiz.getTitle();
+		String title = "Score: " + TestGui.SCORE + "/" + TestGui.ATTEMPTS + " - " + quiz.getTitle();
 		frame.setTitle(title);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -80,15 +80,7 @@ public class InputBox {
 
 		// Confirm button
 		btnConfirm = new JButton("Confirm");
-		btnConfirm.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if (textArea.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "You must select an answer before continuing, try again!");
-				} else {
-					frame.dispose();
-				}
-			}
-		});
+		btnConfirm.addActionListener(new Confirm());
 		GridBagConstraints gbc_btnConfirm = new GridBagConstraints();
 		gbc_btnConfirm.gridx = 0;
 		gbc_btnConfirm.gridy = 8;
@@ -102,6 +94,16 @@ public class InputBox {
 			gbc_btnHint.gridx = 1;
 			gbc_btnHint.gridy = 8;
 			frame.getContentPane().add(btnHint, gbc_btnHint);
+		}
+	}
+	// Confirm button
+	private class Confirm implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			if (textArea.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "You must select an answer before continuing, try again!");
+			} else {
+				frame.dispose();
+			}
 		}
 	}
 	// Display a hint

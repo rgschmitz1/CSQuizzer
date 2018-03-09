@@ -1,5 +1,6 @@
 #This is a harder question on Stacks and Queues
 ---
+Type: 2
 Question: |
   Stack s = new Stack<Integer>(); 
   s.push(7);
@@ -15,8 +16,15 @@ Question: |
   s.push(8);
   System.out.println(s.pop());
   System.out.println(s.pop());
-
-Answer1: test
-Answer2: test2
-CorrectAnswer: test1
+# Answer should be entered in the format below, since each call to pop
+# is printed to a new line. 
+CorrectAnswer: |
+ 10
+  7
+  5
+  false
+  2
+  3
+  8
+  3
 ...

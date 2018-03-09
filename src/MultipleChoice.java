@@ -47,13 +47,13 @@ public class MultipleChoice {
 	 */
 	private void initialize(ReadYaml quiz) {
 		frmMultipleChoiceQuestion = new JDialog(null, "", Dialog.ModalityType.APPLICATION_MODAL);
-		String title = "Score: " + TestGui.SCORE + " - " + quiz.getTitle();
+		String title = "Score: " + TestGui.SCORE + "/" + TestGui.ATTEMPTS + " - " + quiz.getTitle();
 		frmMultipleChoiceQuestion.setTitle(title);
 		frmMultipleChoiceQuestion.setLocationRelativeTo(null);
 		frmMultipleChoiceQuestion.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		frmMultipleChoiceQuestion.getContentPane().setLayout(gridBagLayout);
-		
+
 		// This is the question
 		String question = "<html>"+quiz.getQuestion().replaceAll("(\r\n|\n)", "<br />")+"</html>";
 		JLabel label = new JLabel(question);
@@ -79,19 +79,12 @@ public class MultipleChoice {
 
 		// Confirm button
 		JButton btnConfirm = new JButton("Confirm");
-		btnConfirm.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if (buttonGroup.getSelection() == null) {
-					JOptionPane.showMessageDialog(null, "You must select an answer before continuing, try again!");
-				}
-				frmMultipleChoiceQuestion.dispose();
-			}
-		});
+		btnConfirm.addActionListener(new Confirm());
 		GridBagConstraints gbc_btnConfirm = new GridBagConstraints();
 		gbc_btnConfirm.gridx = 0;
 		gbc_btnConfirm.gridy = i;
 		frmMultipleChoiceQuestion.getContentPane().add(btnConfirm, gbc_btnConfirm);
-		
+
 		// Hint button, will only be displayed if there is a hint
 		if (quiz.getHintText() != null || quiz.getHintImage() != null) {
 			JButton btnHint = new JButton("Hint");
@@ -108,7 +101,16 @@ public class MultipleChoice {
 		if (buttonGroup.getSelection() == null) return null;
 		return buttonGroup.getSelection().getActionCommand();
 	}
-	
+	// Confirm action listener
+	private class Confirm implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			if (buttonGroup.getSelection() == null) {
+				JOptionPane.showMessageDialog(null, "You must select an answer before continuing, try again!");
+			} else {
+				frmMultipleChoiceQuestion.dispose();
+			}
+		}
+	}
 	// Display a hint
 	private class Hint implements ActionListener {
 		ReadYaml quiz;

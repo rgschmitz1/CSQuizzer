@@ -1,9 +1,0 @@
-Type: 1 ## Multiple Choice
-CorrectAnswer: "if (x == y){"
-
-## List of incorrect answers
-incorrectAnswers:
-  incorrect1: "if (x equals 42)" ##found the meaning of life
-  incorrect2: "if [x == 10]"
-  incorrect3: "Arrays start at zero."
-  incorrect4: "if (x => y) {"
