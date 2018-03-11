@@ -41,8 +41,7 @@ public class DifficultySelection {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JDialog(null, "", Dialog.ModalityType.APPLICATION_MODAL);
-		frame.setTitle("Select Difficulty");
+		frame = new JDialog(null, "Select Difficulty", Dialog.ModalityType.APPLICATION_MODAL);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(new GridLayout(1, 0, 0, 0));

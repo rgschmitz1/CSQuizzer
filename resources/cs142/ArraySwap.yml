@@ -1,4 +1,4 @@
-### EDITED BUT NOT TESTED. 
+##Validated
 
 Type: '1' ## Multiple Choice question
 CorrectAnswer: "3"
@@ -9,7 +9,7 @@ Question: |
  swap two integers values does not?
 
 
-### Possible Answers 
+### Possible Answers
 Answer0: "Because arrays use more memory than primitive values."
 Answer1: "Because arrays are slower and more inefficient than primitives."
 Answer2: "Because of a bug in java."
@@ -21,4 +21,3 @@ HintAnswer: null
 Title: "BJP4 Self-Check 7.18 arraySwap (Practice IT)"
 Author: "Marty Stepp (on 2016/09/08)"
 url: "https://practiceit.cs.washington.edu/problem/view/bjp4/chapter7/s1-arrayDeclarationSyntax"
-

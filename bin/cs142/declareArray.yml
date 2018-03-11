@@ -1,4 +1,6 @@
-Type: 2 ## User input
+## Edited but not varified. Ask Bob how correct answer is being parsed.
+
+Type: '2' ## User input
 CorrectAnswer: "int [] data = {7, -1, 13, 24, 6}"
 Question: |
  Write some code that declares an int array variable named data with elements
@@ -10,6 +12,6 @@ Question: |
 ## Practice it did not specify it wanted an int array, so I appended the
 ## question to clarify the data type of the array to avoid confusion.
 Hint: |
- We are not initializing a new empty array, so "int [] data = new int [5]"
- is not the way to go about this. Think of how to make a new array, but with
+ This question is asking for 5 specific elements in an array
+ named data. Think of how to make a new array, but with
  5 specified integers at each index of the array.

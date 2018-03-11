@@ -1,0 +1,17 @@
+--- 
+CorrectAnswer: "public static void example(int x, int y){"
+Type: 1
+Question: |
+    Which of the following is the correct syntax for a method header with paramters??
+     public static void example(int x, int y){ 
+     public static void example (int x, y){
+     public static (int x, int y) examnple(){
+     public static void example (x, y){
+
+
+###Fi3lds to be formatted this way 
+  ## Question 
+  ## Type
+  ## CorrectAnswer
+  ## Answers 
+  ## 
