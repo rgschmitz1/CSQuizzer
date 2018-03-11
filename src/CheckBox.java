@@ -18,6 +18,7 @@ public class CheckBox {
 	private JLabel jlabel;
 	private ArrayList<JCheckBox> chkbxAnswers = new ArrayList<>();
 	private ArrayList<GridBagConstraints> gbc_chkbxAnswers = new ArrayList<>();
+	private JButton btnCitation;
 	private JButton btnConfirm;
 	private JButton btnHint;
 
@@ -92,6 +93,16 @@ public class CheckBox {
 			gbc_btnHint.gridy = i;
 			frame.getContentPane().add(btnHint, gbc_btnHint);
 		}
+		
+		// Citation button
+		if (quiz.getAuthor() != null && quiz.getUrl() != null) {
+			btnCitation = new JButton("Citation");
+			btnCitation.addActionListener(new Citation(quiz));
+			GridBagConstraints gbc_btnCitation = new GridBagConstraints();
+			gbc_btnCitation.gridx = 2;
+			gbc_btnCitation.gridy = i;
+			frame.getContentPane().add(btnCitation, gbc_btnCitation);
+		}
 	}
 
 	// Get selected button
@@ -103,6 +114,18 @@ public class CheckBox {
 			}
 		}
 		return selectedBoxes;
+	}
+	// Citation button
+	private class Citation implements ActionListener {
+		ReadYaml quiz;
+		public Citation(ReadYaml quiz) {
+			this.quiz = quiz;
+		}
+		public void actionPerformed(ActionEvent arg0) {
+			JLabel website = new JLabel();
+			website.setText("<html>Author: "+quiz.getAuthor()+"<br>URL: "+quiz.getUrl()+"</html>");
+			JOptionPane.showMessageDialog(null, website, "Citation", JOptionPane.PLAIN_MESSAGE);
+		}
 	}
 	// Confirm action listener
 	private class Confirm implements ActionListener {

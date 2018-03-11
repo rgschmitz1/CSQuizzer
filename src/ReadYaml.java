@@ -48,5 +48,13 @@ public class ReadYaml {
 	public String getHintImage() {
 		return values.get("HintImage");
 	}
+	// Get citation author
+	public String getAuthor() {
+		return values.get("Author");
+	}
+	// Get citation URL
+	public String getUrl() {
+		return values.get("url");
+	}
 
 }

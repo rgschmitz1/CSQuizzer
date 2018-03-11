@@ -20,6 +20,7 @@ public class MultipleChoice {
 	private ButtonGroup buttonGroup = new ButtonGroup();
 	private ArrayList<JRadioButton> rdbtnAnswers = new ArrayList<>();
 	private ArrayList<GridBagConstraints> gbc_rdbtnAnswers = new ArrayList<>();
+	private JButton btnCitation;
 
 	/**
 	 * Launch the application.
@@ -76,7 +77,6 @@ public class MultipleChoice {
 			i++;
 		}
 		i++;
-
 		// Confirm button
 		JButton btnConfirm = new JButton("Confirm");
 		btnConfirm.addActionListener(new Confirm());
@@ -94,12 +94,33 @@ public class MultipleChoice {
 			gbc_btnHint.gridy = i;
 			frmMultipleChoiceQuestion.getContentPane().add(btnHint, gbc_btnHint);
 		}
+		// Citation button
+		if (quiz.getAuthor() != null && quiz.getUrl() != null) {
+			btnCitation = new JButton("Citation");
+			btnCitation.addActionListener(new Citation(quiz));
+			GridBagConstraints gbc_btnCitation = new GridBagConstraints();
+			gbc_btnCitation.gridx = 2;
+			gbc_btnCitation.gridy = i;
+			frmMultipleChoiceQuestion.getContentPane().add(btnCitation, gbc_btnCitation);
+		}
 	}
 
 	// Get selected button
 	private String getSelectedButton() {
 		if (buttonGroup.getSelection() == null) return null;
 		return buttonGroup.getSelection().getActionCommand();
+	}
+	// Citation button
+	private class Citation implements ActionListener {
+		ReadYaml quiz;
+		public Citation(ReadYaml quiz) {
+			this.quiz = quiz;
+		}
+		public void actionPerformed(ActionEvent arg0) {
+			JLabel website = new JLabel();
+			website.setText("<html>Author: "+quiz.getAuthor()+"<br>URL: "+quiz.getUrl()+"</html>");
+			JOptionPane.showMessageDialog(null, website, "Citation", JOptionPane.PLAIN_MESSAGE);
+		}
 	}
 	// Confirm action listener
 	private class Confirm implements ActionListener {

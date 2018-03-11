@@ -19,6 +19,7 @@ public class InputBox {
 
 	private JDialog frame;
 	private JLabel lblQuestionBox;
+	private JButton btnCitation;
 	private JButton btnConfirm;
 	private JButton btnHint;
 	private JTextArea textArea;
@@ -94,6 +95,27 @@ public class InputBox {
 			gbc_btnHint.gridx = 1;
 			gbc_btnHint.gridy = 8;
 			frame.getContentPane().add(btnHint, gbc_btnHint);
+		}
+		// Citation button
+		if (quiz.getAuthor() != null && quiz.getUrl() != null) {
+			btnCitation = new JButton("Citation");
+			btnCitation.addActionListener(new Citation(quiz));
+			GridBagConstraints gbc_btnCitation = new GridBagConstraints();
+			gbc_btnCitation.gridx = 2;
+			gbc_btnCitation.gridy = 8;
+			frame.getContentPane().add(btnCitation, gbc_btnCitation);
+		}
+	}
+	// Citation button
+	private class Citation implements ActionListener {
+		ReadYaml quiz;
+		public Citation(ReadYaml quiz) {
+			this.quiz = quiz;
+		}
+		public void actionPerformed(ActionEvent arg0) {
+			JLabel website = new JLabel();
+			website.setText("<html>Author: "+quiz.getAuthor()+"<br>URL: "+quiz.getUrl()+"</html>");
+			JOptionPane.showMessageDialog(null, website, "Citation", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	// Confirm button
