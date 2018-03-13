@@ -1,9 +1,9 @@
-## Verified
+## Verified 
 Type: '1' ## Multiple Choice
-Question: |
+Title: "ifStatementSyntax"
+Question: | 
  Which of the following is the correct syntax for declaring an if statement?
 
-## List of Answer answers
 Answer0: 'if (x equals 42)' ##found the meaning of life
 Answer1: 'if [x == 10]'
 Answer2: 'Arrays start at zero.'
@@ -14,6 +14,6 @@ HintText: null
 HintAnswer: null
 
 # Citation
-Title: "BJP4 Self-Check 4.3 ifStatementSyntax"
+QuizTitle: "BJP4 Self-Check 4.3 ifStatementSyntax"
 Author: "Marty Stepp (on 2016/09/08)"
 url: "https://practiceit.cs.washington.edu/problem/view/bjp4/chapter4/s3-ifStatementSyntax"

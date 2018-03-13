@@ -1,8 +1,0 @@
-Type: '1' ## Multiple Choice
-
-## List of Answer answers
-Answer0: "if (x equals 42)" ##found the meaning of life
-Answer1: "if [x == 10]"
-Answer2: "Arrays start at zero."
-Answer3: "if (x => y) {"
-CorrectAnswer: "if (x == y){"

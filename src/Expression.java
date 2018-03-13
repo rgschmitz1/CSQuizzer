@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 //import bsh.EvalError;
 import bsh.Interpreter;
 
-public class expression {
+public class Expression {
 	static Interpreter evaluater = new Interpreter();
 
 	private double floater(int j) {
@@ -76,15 +76,12 @@ public class expression {
 			currentnumber = ThreadLocalRandom.current().nextInt(0, 99 + 1);
 			if (firsttime) {
 				firsttime = false;
-			} else {
 			}
-			// System.out.println("new answer: " + answer);
 			currentoperand = expressionrandommer(difficulty);
 
 			// decide if we are going to add floating number
 			floatOrNot = ThreadLocalRandom.current().nextInt(0, 6 + 1);
 			if (floatOrNot == 6 && difficultyHolder > 6) {
-				// System.out.println("float case");
 				result += floater(currentnumber) + " " + currentoperand;
 				--difficulty;
 				floatused = true;
@@ -92,7 +89,6 @@ public class expression {
 			}
 
 			// Add concatenation with quotation marks
-
 			if (!concatinateEnded && difficulty > 1 && difficulty != difficultyHolder && !concatinateStarted
 					&& difficultyHolder > 6) {
 				concatOrNot = ThreadLocalRandom.current().nextInt(0, 4 + 1);
@@ -121,10 +117,7 @@ public class expression {
 					--difficulty;
 					continue;
 				}
-			}
-
-			else {
-
+			} else {
 				result += currentnumber + " " + currentoperand;
 			}
 
@@ -133,7 +126,7 @@ public class expression {
 
 		try {
 			if (floatused) {
-				 result = result.replaceAll("/", "+");
+				result = result.replaceAll("/", "+");
 			}
 			String myWeirdExpression = result.replaceAll("\"", "\\\"");
 			answer = (String) evaluater.eval(myWeirdExpression);
@@ -141,19 +134,8 @@ public class expression {
 
 			return eval(difficultyHolder);
 		}
-		// System.out.println("answer: " + answer);
-		// System.out.println("question: " + result);
-//		return "question: " + result + "? answer: " + answer;
 		String output = "What is the output of the following expression?\n\n"+result+"\n\n";
 		String userInput = JOptionPane.showInputDialog(null, output, "Input your integer");
-		//				return userInput.equals(evaluater.eval(myWeirdExpression));
 		return userInput.equals(answer);
 	}
-
-//	public static void main(String[] args) throws Exception {
-//
-//		System.out.println(eval(9));
-//
-//
-//	}
 }

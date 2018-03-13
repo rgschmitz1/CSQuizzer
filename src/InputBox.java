@@ -48,9 +48,8 @@ public class InputBox {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(ReadYaml quiz) {
-		frame = new JDialog(null, "", Dialog.ModalityType.APPLICATION_MODAL);
 		String title = "Score: " + TestGui.SCORE + "/" + TestGui.ATTEMPTS + " - " + quiz.getTitle();
-		frame.setTitle(title);
+		frame = new JDialog(null, title, Dialog.ModalityType.APPLICATION_MODAL);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -114,7 +113,7 @@ public class InputBox {
 		}
 		public void actionPerformed(ActionEvent arg0) {
 			JLabel website = new JLabel();
-			website.setText("<html>Author: "+quiz.getAuthor()+"<br>URL: "+quiz.getUrl()+"</html>");
+			website.setText("<html>Author: "+quiz.getAuthor()+"<br>Quiz: "+quiz.getQuizTitle()+"<br>URL: "+quiz.getUrl()+"</html>");
 			JOptionPane.showMessageDialog(null, website, "Citation", JOptionPane.PLAIN_MESSAGE);
 		}
 	}

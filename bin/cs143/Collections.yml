@@ -1,7 +1,7 @@
 ---
 Type: '1'
 ## This will be part of the window title
-Title: Collections
+Title: 'Collections'
 ## This is the question, include a | character to keep formatting
 Question: | 
       If Apple was added twice to Set A but added just once to Set B, Set A and Set B would be considered to be different.
@@ -26,4 +26,8 @@ CorrectAnswer: '1'
 HintText: null
 ## This is a hint image, should store images in /resources folder
 HintImage: null
+#Citation
+QuizTitle: "W18 mini Quiz 21 "
+Author: "Martin Hock Winter 2018"
+url: "https://tacomacc.instructure.com/courses/1555474/quizzes/3343393"
 ...

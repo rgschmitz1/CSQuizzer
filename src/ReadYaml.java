@@ -56,5 +56,8 @@ public class ReadYaml {
 	public String getUrl() {
 		return values.get("url");
 	}
+	public String getQuizTitle() {
+		return values.get("QuizTitle");
+	}
 
 }

@@ -1,10 +1,9 @@
 ---
 
-###################DISPLAY IN SHOWDIALOGUE WINDOW#####################
-
-    Type: 2
-    CorrectAnswer: '[you, are, how]'
-    Question: 
+Title: "StackQueueQuestion" 
+Type: '2' ## input
+CorrectAnswer: '[you, are, how]'
+Question: |
         What is the output of the following lines of code?
             Stack<String> s = new Stack<String>(); 
             Queue<String> q = new LinkedList<String>(); 
@@ -14,9 +13,10 @@
             while(!s.isEmpty()){
                 q.add(s.pop()):}
             System.out.println(q);
+            
         Recall that stacks and queues print in an [a,b,c] format. 
 
-
-
-######## GET INPUT FROM USER#############
-...
+##Citations
+QuizTitle: "BJP4 Self-Check 14.13 stackQueueUsage1"
+Author: "Marty Stepp (on 2016/09/08"
+url: "https://practiceit.cs.washington.edu/problem/view/bjp4/chapter14/s13-stackQueueUsage1"
