@@ -25,7 +25,7 @@ public class CheckBox {
 	/**
 	 * Launch the application.
 	 */
-	public String CheckBoxWindow() {
+	public String checkBoxWindow() {
 		try {
 			frame.pack();
 			frame.setVisible(true);

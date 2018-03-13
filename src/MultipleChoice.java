@@ -25,7 +25,7 @@ public class MultipleChoice {
 	/**
 	 * Launch the application.
 	 */
-	public String MultipleChoiceWindow() {
+	public String multipleChoiceWindow() {
 		try {
 			// Resize window based on content
 			frmMultipleChoiceQuestion.pack();

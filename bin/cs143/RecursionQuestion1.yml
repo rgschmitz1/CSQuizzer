@@ -8,7 +8,7 @@ Question: |
     if (n<=1){
       System.out.print(n);
     }else{
-      myster1(n / 2);
+      mystery(n / 2);
       System.out.print(", " + n);
     }
   }

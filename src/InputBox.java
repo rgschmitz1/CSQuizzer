@@ -27,7 +27,7 @@ public class InputBox {
 	/**
 	 * Launch the application.
 	 */
-	public String InputBoxWindow() {
+	public String inputBoxWindow() {
 		try {
 			frame.pack();
 			frame.setVisible(true);

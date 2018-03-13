@@ -42,19 +42,19 @@ public class TestGui {
 			switch (quiz.getType()) {
 			case 1 :  // Multiple Choice Question
 				MultipleChoice question = new MultipleChoice(quiz);
-				if (quiz.checkAnswer(question.MultipleChoiceWindow())) {
+				if (quiz.checkAnswer(question.multipleChoiceWindow())) {
 					SCORE++;
 				}
 				break;
 			case 2 :  // Input Box Question
 				InputBox question2 = new InputBox(quiz);
-				if (quiz.checkAnswer(question2.InputBoxWindow())) {
+				if (quiz.checkAnswer(question2.inputBoxWindow())) {
 					SCORE++;
 				}
 				break;
 			case 3 :  // Check Box Question
 				CheckBox question3 = new CheckBox(quiz);
-				if (quiz.checkAnswer(question3.CheckBoxWindow())) {
+				if (quiz.checkAnswer(question3.checkBoxWindow())) {
 					SCORE++;
 				}
 				break;
@@ -95,29 +95,25 @@ public class TestGui {
 	//	public static void main(String[] args) {
 	public static void main(String[] args) {
 		// Kick off quizzes
-//		randomizer();
+		//		randomizer();
 
 		// TODO Remove this comment and all code below when deployed
 		// Insert your test quiz below
 		//		ReadYaml quiz = new ReadYaml("/cs143/Collections.yml");
-		try {
-			ArrayList<File> files = selectDifficulty();
-			for (File file : files) {
-				System.out.println("/"+difficulty+"/"+file.getName()+"\n----");
-				ReadYaml quiz = new ReadYaml("/"+difficulty+"/"+file.getName());
-				if (quiz.getType() == 1) {
-					MultipleChoice question = new MultipleChoice(quiz);
-					System.out.println(quiz.checkAnswer(question.MultipleChoiceWindow()));
-				} else if (quiz.getType() == 2) {
-					InputBox question = new InputBox(quiz);
-					System.out.println(quiz.checkAnswer(question.InputBoxWindow()));
-				} else {
-					CheckBox question = new CheckBox(quiz);
-					System.out.println(quiz.checkAnswer(question.CheckBoxWindow()));
-				}
+		ArrayList<File> files = selectDifficulty();
+		for (File file : files) {
+			System.out.println("/"+difficulty+"/"+file.getName()+"\n----");
+			ReadYaml quiz = new ReadYaml("/"+difficulty+"/"+file.getName());
+			if (quiz.getType() == 1) {
+				MultipleChoice question = new MultipleChoice(quiz);
+				System.out.println(quiz.checkAnswer(question.multipleChoiceWindow()));
+			} else if (quiz.getType() == 2) {
+				InputBox question = new InputBox(quiz);
+				System.out.println(quiz.checkAnswer(question.inputBoxWindow()));
+			} else {
+				CheckBox question = new CheckBox(quiz);
+				System.out.println(quiz.checkAnswer(question.checkBoxWindow()));
 			}
-		} catch (Exception e) {
-
 		}
 	}
 
