@@ -47,7 +47,7 @@ public class MultipleChoice {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(ReadYaml quiz) {
-		String title = "Score: " + API.SCORE + "/" + API.ATTEMPTS + " - " + quiz.getTitle();
+		String title = "Score: " + TestGui.SCORE + "/" + TestGui.ATTEMPTS + " - " + quiz.getTitle();
 		frmMultipleChoiceQuestion = new JDialog(null, title, Dialog.ModalityType.APPLICATION_MODAL);
 		frmMultipleChoiceQuestion.setLocationRelativeTo(null);
 		frmMultipleChoiceQuestion.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

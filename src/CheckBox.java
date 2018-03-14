@@ -46,7 +46,7 @@ public class CheckBox {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(ReadYaml quiz) {
-		String title = "Score: " + API.SCORE + "/" + API.ATTEMPTS + " - " + quiz.getTitle();
+		String title = "Score: " + TestGui.SCORE + "/" + TestGui.ATTEMPTS + " - " + quiz.getTitle();
 		frame = new JDialog(null, title, Dialog.ModalityType.APPLICATION_MODAL);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
